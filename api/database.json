@@ -1,3 +1,10 @@
 {
-"shows":[]
+  "shows": [
+    {
+      "name": "CSI",
+      "summary": "Cops and stuff",
+      "seasons": "3242042423",
+      "id": 1
+    }
+  ]
 }

@@ -1,3 +1,5 @@
+const $ = require("jquery")
+
 const database = Object.create({}, {
       getShow: {
         value: () => {
@@ -6,33 +8,33 @@ const database = Object.create({}, {
       },
       postShow: {
         value: (name, summary, seasons) => {
+          // console.log(name, summary, seasons)
           return $.ajax({
             url: "http://localhost:3000/shows",
             method: "POST",
             data: {
               name: name,
-              summary: email,
-              seasons: password
+              summary: summary,
+              seasons: seasons
             }
           })
         }
       },
       editShow: {
-        value: (name, summary, seasons) => {
+        value: (name, summary, seasons, id) => {
           return $.ajax({
-            url: "http://localhost:3000/shows",
+            url: `http://localhost:3000/shows/${id}`,
             method: "PUT",
             data: {
               name: name,
-              summary: date,
-              seasons: location
+              summary: summary,
+              seasons: seasons
             }
           })
         }
       },
       deleteShow: {
         value: id => {
-          // console.log(id)
           return $.ajax({
             url: `http://localhost:3000/shows/${id}`,
             method: "DELETE"
@@ -40,3 +42,5 @@ const database = Object.create({}, {
         }
       }
     })
+
+    module.exports = database

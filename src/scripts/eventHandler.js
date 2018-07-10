@@ -1,3 +1,7 @@
+const clear = require("./clearDOM")
+const formVals = require("./getFormValues")
+const saveNLoad = require("./saveNLoadDatabase")
+
 const addBtn = document.querySelector("#addBtn")
 
 addBtn.addEventListener("click", () => {
@@ -5,26 +9,41 @@ addBtn.addEventListener("click", () => {
   const forms = document.createElement("div")
 
   const nameInput = document.createElement("input")
-  nameInput.className = "nameInput"
+  nameInput.id = "nameInput"
   nameInput.placeholder = "Tv Show Name"
 
   const summaryInput = document.createElement("input")
-  summaryInput.className = "summaryInput"
+  summaryInput.id = "summaryInput"
   summaryInput.placeholder = "Plot Summary"
 
   const seasonsInput = document.createElement("input")
-  seasonsInput.className = "seasonsInput"
+  seasonsInput.id = "seasonsInput"
   seasonsInput.placeholder = "Number of Seasons"
-
-  const submitBtn = document.createElement("button")
-  submitBtn.className = "submitBtn"
 
   forms.appendChild(nameInput)
   forms.appendChild(summaryInput)
   forms.appendChild(seasonsInput)
+
+  const submitBtn = document.createElement("button")
+  submitBtn.textContent = "Submit"
+
+  submitBtn.addEventListener("click", () => {
+    const cardList = require("./cardList")
+    formVals()
+    clear("#inputs")
+    cardList()
+  })
+
   forms.appendChild(submitBtn)
   inputContainer.appendChild(forms)
+
 })
+
+
+
+
+
+// const submitButton = document.querySelector("#submitBtn")
 
 // const editBtn = document.querySelector("#editBtn")
 
