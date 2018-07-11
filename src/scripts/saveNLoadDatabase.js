@@ -22,7 +22,7 @@ const database = Object.create({}, {
       },
       editShow: {
         value: (name, summary, seasons, id) => {
-          console.log("theid", id);
+          // console.log("theid", id);
           return $.ajax({
             url: `http://localhost:3000/shows/${id}`,
             method: "PUT",

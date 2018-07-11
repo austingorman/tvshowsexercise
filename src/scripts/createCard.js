@@ -3,6 +3,7 @@ const clear = require("./clearDOM")
 const saveNLoad = require("./saveNLoadDatabase")
 
 
+
 let cardMaker = (name, summary, seasons, id) => {
   let cardContainer = document.querySelector("#cardHolder")
 
@@ -65,13 +66,12 @@ let cardMaker = (name, summary, seasons, id) => {
       if (event.keyCode === 13) {
         // Trigger the button element with a click
         // console.log("id", event.target.parentNode.id);
-         saveNLoad.editShow(nameEditInput.value, summaryEditInput.value, seasonsEditInput.value, theTarget)
+        saveNLoad.editShow(nameEditInput.value, summaryEditInput.value, seasonsEditInput.value, theTarget)
           .then(response => {
             console.log(response)
             clear("#cardHolder")
             clear("#editContainer")
 
-            const cardList = require("./cardList")
             cardList()
           })
       }
@@ -85,21 +85,33 @@ let cardMaker = (name, summary, seasons, id) => {
 
   })
   // ---------------------------------------------------------------------
-  let checkDiv = document.createElement("div");
+  const checkDiv = document.createElement("div");
   checkDiv.setAttribute("class", "checkBox")
 
-  let checkBox = document.createElement("INPUT")
+  const checkBox = document.createElement("INPUT")
   checkBox.setAttribute("type", "checkbox")
   checkBox.setAttribute("id", "checkbox")
-  let doneTag = document.createElement("label");
+  const doneTag = document.createElement("label");
   doneTag.className = "watched"
   doneTag.textContent = "Watched:"
 
   checkDiv.appendChild(doneTag)
   checkDiv.appendChild(checkBox)
 
+  const deleteButton = document.createElement("button")
+  deleteButton.textContent = "Delete"
+
+  deleteButton.addEventListener("click", () => {
+    saveNLoad.deleteShow(id)
+    .then(response => {
+      clear("#cardHolder")
+      cardList()
+    })
+  })
+
   // card.appendChild(editButton)
   card.appendChild(checkDiv)
+  card.appendChild(deleteButton)
 
   cardContainer.appendChild(card)
   return cardContainer
