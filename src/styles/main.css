@@ -1,5 +1,29 @@
-.card {
-  background-color: orange;
+*{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.nameButton:hover{
+  color:rgb(255, 145, 0);
+}
+
+.card{
+  background-color: darkgrey;
   margin: 10px;
   padding: 15px;
+}
+
+h5 {
+  background-color: dimgray;
+  color: white;
+  margin: 0px;
+}
+h2{
+  margin: 0px;
+}
+div{
+  margin-bottom: 10px;
+}
+
+.watched{
+  margin-top:10px;
 }
