@@ -3,7 +3,6 @@ const clear = require("./clearDOM")
 const saveNLoad = require("./saveNLoadDatabase")
 
 
-
 let cardMaker = (name, summary, seasons, id) => {
   let cardContainer = document.querySelector("#cardHolder")
 
@@ -40,7 +39,6 @@ let cardMaker = (name, summary, seasons, id) => {
   // const editButton = document.querySelector("#nameButton")
 
   // MODULARIZE THIS PART LATER--------------------------------------
-  // THESE VALUES ARE WROOOOOOOOONG
   nameEl.addEventListener("click", () => {
     console.log("parentNode", event.target.parentNode);
     let theTarget = event.target.parentNode.id
@@ -72,6 +70,7 @@ let cardMaker = (name, summary, seasons, id) => {
             clear("#cardHolder")
             clear("#editContainer")
 
+            const cardList = require("./cardList")
             cardList()
           })
       }
@@ -105,7 +104,16 @@ let cardMaker = (name, summary, seasons, id) => {
     saveNLoad.deleteShow(id)
     .then(response => {
       clear("#cardHolder")
-      cardList()
+
+// this is the same code form cardList. damn you circular dependencies!
+        saveNLoad.getShow()
+          .then(showData => {
+            clear("#cardHolder")
+            for (let i in showData) {
+              // console.log(showData[i].name)
+              createCard(showData[i].name, showData[i].summary, showData[i].seasons, showData[i].id);
+            }
+          })
     })
   })
 

@@ -7,7 +7,7 @@ const showGetter = () => {
       .then(showData => {
         clear("#cardHolder")
         for (let i in showData) {
-          console.log(showData[i].name)
+          // console.log(showData[i].name)
           createCard(showData[i].name, showData[i].summary, showData[i].seasons, showData[i].id);
         }
       })
